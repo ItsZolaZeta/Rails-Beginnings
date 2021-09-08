@@ -1,0 +1,22 @@
+<main>
+  <div class="container my-5">
+    <h1> Pins - Index View</h1>
+
+    <% if(@pins.any?) %>
+      <ul class="d-flex flex-row justify-content-start">  
+        <% @pins.each do |pin| %>
+          <li class="list-group-item border-0 ">
+            <%= render(partial: 'pin_card', locals: { card_title: pin.title, card_img: pin.image_url, card_tags: pin.tag, pin: pin }) %>
+          </li>
+        <% end %>
+      </ul>
+      <%# <div class="see-more">
+        <button class="btn" type="button" data-more="true">See more</button>
+      </div> %>
+    <% else %>
+      <h3>No pins found! </h3>
+    <% end %>
+    
+    
+  </div>
+</main>

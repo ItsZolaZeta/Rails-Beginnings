@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;">
+  <%= link_to(pin_path(pin)) do %>
+    <img class="card-img-top" src=<%= card_img %> alt="Card image">
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= card_title %></h5>
+    <p class="card-text">Tags: <%= card_tags %></p>
+    <a href="#" class="btn btn-primary">Add to personal pin list</a>
+  </div>
+</div>
