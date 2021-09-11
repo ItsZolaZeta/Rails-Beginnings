@@ -3,6 +3,12 @@ class PinsController < ApplicationController
         @pins = Pin.all
     end
 
+    def search
+        @search_term = params[:q]
+        logger.info("Search completed using #{@search_term}.")
+        @pins = Pin.search(@search_term)
+    end
+
     def new
         @pin = Pin.new
     end
@@ -15,7 +21,7 @@ class PinsController < ApplicationController
         if(@pin.save)
             redirect_to pins_path
         else 
-            render 'new'  #instance the var pin to @pin so that it's available for this view
+            render 'new'  
         end
     end
 

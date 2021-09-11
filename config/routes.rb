@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root to: 'pins#index'
+  root to: 'home#index'
+
+  get 'pins/search', to: 'pins#search', as: 'pins_search'
 
   resources :pins do
     resources :comments

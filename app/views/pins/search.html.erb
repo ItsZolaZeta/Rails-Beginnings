@@ -1,13 +1,8 @@
 <main>
   <div class="container my-5">
-    <div class="d-flex justify-content-center">
-      <h1>All Pins</h1>
-    </div>
-    <div class="d-flex justify-content-center">
-      <%= link_to(new_pin_path(), class: 'btn btn-primary') do %>Create a new Pin<% end %>
-    </div>
-    <hr>
-
+    <h1>Results for "<%= @search_term %>"</h1>
+  </div>
+  <div class="container my-5">
     <% if(@pins.any?) %>
       <ul class="d-flex flex-wrap flex-row justify-content-start" style="padding-left: 0;">  
         <% @pins.each do |pin| %>
@@ -17,9 +12,7 @@
         <% end %>
       </ul>
     <% else %>
-      <h3>No pins found! </h3>
+      <h3>No pins found matching this search term! </h3>
     <% end %>
-    
-
   </div>
 </main>
