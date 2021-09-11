@@ -1,7 +1,12 @@
 <div class="card" style="width: 16rem;">
   <%= link_to(pin_path(pin)) do %>
-    <img class="card-img-top" src=<%= card_img %> alt="Card image">
+    <% if(card_img.nil?) %>
+      <img class="card-img-top" src="https://images.unsplash.com/photo-1604725333736-1f962a6218d0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc3Vuc2V0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="card image">
+    <% else %>
+      <%= image_tag(card_img, class: "card-img-top") %>
+    <% end %>
   <% end %>
+
   <div class="card-body">
     <h5 class="card-title"><%= card_title %></h5>
     <p class="card-text">Created by: <%= card_author %></p>

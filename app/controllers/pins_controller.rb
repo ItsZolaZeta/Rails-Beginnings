@@ -33,8 +33,8 @@ class PinsController < ApplicationController
         if(session[:user_id].present?)
             @user = User.find(session[:user_id])
             @disable_add_pinlist = @user.pinlist.exists?(@pin.id)
-        else
-            @user = nil
+        # else
+        #     @user = nil
         end
     end
 

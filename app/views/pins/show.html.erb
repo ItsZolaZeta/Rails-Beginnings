@@ -1,23 +1,27 @@
 <main>
   <div class="container my-5 hr d-flex flex-row">
     <div class="w-50">
+      <% if(@pin.image_url.nil?) %>
+        <img class="img-thumbnail w-75" src="https://images.unsplash.com/photo-1604725333736-1f962a6218d0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc3Vuc2V0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="card image">
+      <% else %>
         <%= image_tag(@pin.image_url, class: "img-thumbnail w-75") %>
+      <% end %>
     </div>
     <div>
-        <h1><%= @pin.title %></h1>
-        <h6>Created by <%= @pin.user.email %> on <%= @pin.created_at %></h6>
-        <hr>
-        <h4>Tags: <%= @pin.tag %> </h4>
-    
+      <h1><%= @pin.title %></h1>
+      <h6>Created by <%= @pin.user.email %> on <%= @pin.created_at.strftime("%d %b '%y") %></h6>
+      <hr>
+      <h4>Tags: <%= @pin.tag %> </h4>
+  
+      <% if(isLoggedIn()) %>
         <%= link_to(edit_pin_path(@pin), class: 'btn btn-primary') do %>Edit<% end %>
-        <% if(@user.present?) %>
-            <%= form_tag(user_pinlist_index_path(@user)) do %>
-                <%= hidden_field_tag('pin_id', @pin.id) %>
-                <%= button_tag(class: 'btn btn-primary', type: 'submit', disabled: @disable_add_pinlist) do %>
-                  Add to personal pin list
-                <% end %>
-            <% end %>
+        <%= form_tag(user_pinlist_index_path(@user)) do %>
+          <%= hidden_field_tag('pin_id', @pin.id) %>
+          <%= button_tag(class: 'btn btn-primary', type: 'submit', disabled: @disable_add_pinlist) do %>
+            Add to personal pin list
+          <% end %>
         <% end %>
+      <% end %>
     </div>
   </div>
   <div class="container my-5 hr">

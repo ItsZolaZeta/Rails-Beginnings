@@ -3,9 +3,11 @@
     <div class="d-flex justify-content-center">
       <h1>All Pins</h1>
     </div>
-    <div class="d-flex justify-content-center">
-      <%= link_to(new_pin_path(), class: 'btn btn-primary') do %>Create a new Pin<% end %>
-    </div>
+    <% if(isLoggedIn()) %>
+      <div class="d-flex justify-content-center">
+        <%= link_to(new_pin_path(), class: 'btn btn-primary') do %>Create a new Pin<% end %>
+      </div>
+    <% end %>
     <hr>
 
     <% if(@pins.any?) %>
@@ -17,7 +19,7 @@
         <% end %>
       </ul>
     <% else %>
-      <h3>No pins found! </h3>
+      <h3>No pins found!</h3>
     <% end %>
     
 
