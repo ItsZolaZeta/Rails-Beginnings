@@ -21,15 +21,15 @@ class PinsController < ApplicationController
 
     def show
         @pin = Pin.find(params[:id])
-        # @comment = Comment.new
-        # @display_add_comment = session[:user_id].present?
+        @comment = Comment.new
+        @display_add_comment = session[:user_id].present?
 
-        # if(session[:user_id].present?)
-        #     @user = User.find(session[:user_id])
-        #     @disable_add_pinlist = @user.pinlist.exists?(@pin.id)
-        # else
-        #     @user = nil
-        # end
+        if(session[:user_id].present?)
+            @user = User.find(session[:user_id])
+            @disable_add_pinlist = @user.pinlist.exists?(@pin.id)
+        else
+            @user = nil
+        end
     end
 
     def edit
@@ -48,6 +48,6 @@ class PinsController < ApplicationController
 
     private 
     def pins_resource_params
-        params.require(:pin).permit(:title,  :image_url, :tag)
+        params.require(:pin).permit(:title, :image_url, :tag)
     end
 end

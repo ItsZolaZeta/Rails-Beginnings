@@ -14,8 +14,7 @@ class Pin < ApplicationRecord
     end
 
     def self.search(search_term)
-        #Idea.where('title LIKE ?', "%#{search_term}%")    Idea. is redundant
         wildcard_filter = "%#{search_term}%"
-        where('title LIKE ?', wildcard_filter).or(where('description LIKE ?', wildcard_filter))
+        where('title LIKE ?', wildcard_filter).or(where('tag LIKE ?', wildcard_filter))
     end
 end

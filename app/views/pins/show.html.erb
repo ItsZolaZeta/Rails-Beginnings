@@ -1,7 +1,50 @@
 <main>
+  <div class="container my-5 hr d-flex flex-row">
+    <div class="w-50">
+        <%= image_tag(@pin.image_url, class: "img-thumbnail w-75") %>
+    </div>
+    <div>
+        <h1><%= @pin.title %></h1>
+        <h6>Created by <%= @pin.user.email %> on <%= @pin.created_at %></h6>
+        <hr>
+        <h4>Tags: <%= @pin.tag %> </h4>
+    
+        <%= link_to(edit_pin_path(@pin), class: 'btn btn-primary') do %>Edit<% end %>
+        <% if(@user.present?) %>
+            <%= form_tag(user_pinlist_index_path(@user)) do %>
+                <%= hidden_field_tag('pin_id', @pin.id) %>
+                <%= button_tag(class: 'btn btn-primary', type: 'submit', disabled: @disable_add_pinlist) do %>
+                  Add to personal pin list
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+  </div>
   <div class="container my-5 hr">
-    <h1> Show specific pin </h1>
-    <h1><%= @pin.title %></h1>
-    <h3>Need details of pin, edit button, add comment when signed in, add to personal pin list (only once), </h3>
+    <h3>Comments: </h3>
+    <br>
+      <% if(@display_add_comment) %>
+        <%= form_for([@pin, @comment]) do |form| %>
+          <div class="form-group">
+            <%= form.label(:body, 'Add a comment') %>
+            <%= form.text_area(:body, class: 'form-control') %>
+          </div>
+          <%= form.submit('Post', class: 'btn btn-primary') %>
+        <% end %>
+      <% end %>
+    <br>
+    <ul class="list-group">
+      <% @pin.comments.each do |comment| %>
+        <li class="list-group-item flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"><%= comment.user.email %> </h5>            
+            <small><%= comment.created_at%></small>
+          </div>
+          <div>
+            <p class="mb-1"><%= comment.body %></p>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </main>

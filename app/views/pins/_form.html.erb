@@ -1,9 +1,9 @@
 <% if(pin.errors.any?) %>   
-    <div class="alert alert--wide">
-        <%= pin.errors.full_messages.join('<br />') %>
+    <div class="text-danger">
+        <%= safe_join(pin.errors.full_messages, raw("<br />")) %>
     </div>
 <% end %>  
-
+<br>
 <%= form_for(pin) do |form| %>
   <div class="form-group">
     <%= form.label(:title) %>

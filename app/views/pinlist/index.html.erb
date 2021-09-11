@@ -1,20 +1,21 @@
 <main>
   <div class="container my-5">
     <div class="d-flex justify-content-between">
-      <h1> Pins</h1>
+      <h1> My Personal Pinlist</h1>
+
       <%= link_to(new_pin_path(), class: 'btn btn-primary') do %>Create a new Pin<% end %>
     </div>
-
-    <% if(@pins.any?) %>
+    
+    <% if(@pinlist.any?) %>
       <ul class="d-flex flex-wrap flex-row justify-content-start">  
-        <% @pins.each do |pin| %>
+        <% @pinlist.each do |pin| %>
           <li class="list-group-item border-0 ">
             <%= render(partial: 'pin_card', locals: { card_title: pin.title, card_img: pin.image_url, card_tags: pin.tag, pin: pin }) %>
           </li>
         <% end %>
       </ul>
     <% else %>
-      <h3>No pins found! </h3>
+      <h3>No pins in your personal pinlist were found! </h3>
     <% end %>
     
 

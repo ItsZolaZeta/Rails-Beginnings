@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  # get '/pins/index'
-  # get  '/pins/new'
-  # post '/pins/create'
+  root to: 'pins#index'
 
   resources :pins do
     resources :comments
